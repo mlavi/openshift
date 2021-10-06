@@ -1,37 +1,48 @@
-# Installing Red Hat OpenShift on a Nutanix AHV Cluster
+# Getting Started with Red Hat OpenShift on a Nutanix
+
+This blog series provides guidance to IT, DevOps, and System Administrators looking to justify and provide production grade Kubernetes with Red Hat OpenShift on a Nutanix AHV cluster.
 
 ## Cloud Native Digital Transformation
 
-The migration of applications from physical servers to virtual workloads has been underway for over two decades, but the migration from virtual machines to containers started less than a decade ago. Modernizing applications to run as containers requires new management systems and the open source [Kubernetes project](https://kubernetes.io/) has emerged as the leader.
+The migration of applications from physical servers to virtual workloads has been underway for over two decades, but the migration from virtual machines to containers is less than a decade old. Modernizing applications to run as containers requires new tooling and the open source [Kubernetes project](https://kubernetes.io/) has emerged as the widest adopted container management system.
 
-Kubernetes provides cloud-native capabilities, architecture, and operations which require new skill sets, posing a disruptive challenge to traditional organizations. Like the Linux operating system, there are many Kubernetes distributions, and Red Hat's OpenShift Container Platform provides a market leading, rich featured, secure manner to run and manage containers. OpenShift includes over-the-air updates, container runtime, networking, ingress, monitoring, logging, container registry, and authentication and authorization solutions. Combining Red Hat OpenShift with Nutanix hybrid cloud infrastructure provides a full stack enterprise supported solution with simplified management and operations, accelerating the adoption of containers and cloud native applications.
+Kubernetes provides cloud-native capabilities, architecture, and operations which require new skill sets, posing a disruptive challenge to traditional organizations who desire the rapid software updates and performance scaling benefits. Like the Linux operating system, there are many Kubernetes distributions, and Red Hat's [OpenShift Container Platform](https://www.redhat.com/en/technologies/cloud-computing/openshift) provides a market-leading platform to run and manage containers. OpenShift includes over-the-air updates, container runtime, networking, ingress, monitoring, logging, container registry, and authentication and authorization solutions.
+
+Nutanix provides simplicity, scalability, and hybrid cloud infrastructure, providing one-click upgrades of storage, compute, and network resources and services on your choice of hardware, public cloud, and service providers. Running Red Hat OpenShift on Nutanix provides a full stack, enterprise supported, standardized solution with greatly simplified platform management and many non-disruptive operations, accelerating the adoption of containers and cloud native applications.
 
 ## Partnership Overview
 
-Red Hat and Nutanix [announced a strategic partnership in July 2021](https://www.nutanix.com/blog/red-hat-and-nutanix-partner-to-deliver-big-on-hybrid-cloud) which supported recent releases of Red Hat Enterprise Linux, Satellite, and OpenShift on Nutanix AOS with AHV hypervisor on Hyperconverged Infrastructure (HCI) providers for hybrid clouds. The combined strength of the best open source software leader with the best hybrid cloud infrastructure leader has been asked by our mutual customers for years and work to improve jointly certified solutions has been underway for most of 2021. *[Customer quote links from the PR?]*
+Red Hat, the leading open source software vendor, and Nutanix, the pioneering hyperconverged infrastructure leader, [announced a strategic partnership in July 2021](https://www.nutanix.com/blog/red-hat-and-nutanix-partner-to-deliver-big-on-hybrid-cloud) which supports recent releases of Red Hat Enterprise Linux, Satellite, and OpenShift on Nutanix AOS with AHV hypervisor. Customers have asked for improved support, certification, and reference architectures from Red Hat and Nutanix and joint engineering work has been underway for most of 2021.
 
-A simple overview of the joint solution: ![](https://www.nutanix.com/content/dam/nutanix/images/img-rh-partnership-ref-1.png)
+    “The insurance industry is in the midst of a transformation to rapidly adapt to customers’ demands. We protect 39 million lives around the world with our products and services. As we work to modernize our IT infrastructure to support a seamless digital experience for our customers and employees, Nutanix and Red Hat help simplify our technology stack and advance our cloud transformation.”
+    [Gautam Roy, chief technology officer, Unum](https://www.redhat.com/en/about/press-releases/red-hat-and-nutanix-announce-strategic-partnership-deliver-open-hybrid-multicloud-solutions)
 
-While there is much potential for the partnership to expand, the focus of this series of blogs is to walkthrough and exercise a full stack, enterprise supported Kubernetes container platform with OpenShift on AHV.
+An overview of the technology stack powering Red Hat OpenShift on Nutanix HCI solution includes workloads and orchestration on the top layer, the combined Nutanix and Red Hat software offerings in the middle layers, and the infrastructure providers (on-premises hardware and public clouds) on the bottom layer. In the following diagram, the Nutanix supported portion of the solution is indicated in green.
 
-## Why Use Nutanix HCI, Data Services, and Cloud Native Solutions?
+![Red Hat OpenShift on Nutanix HCI](openshift-on-hci.png)
 
-Freedom of customer choice is central to Nutanix, with support for multiple infrastructure vendors and hyper-scalers, hypervisors, and Kubernetes distributions. Choice allows customers to leverage their existing vendors, investments, and skill sets while modernizing their operations and reducing total cost of ownership with [Nutanix HCI](https://www.nutanix.com/products/acropolis) to provide enterprise clouds. Further efficiencies including increased performance and reduced management can be achieved with additional Nutanix data service and cloud native offerings. Most Nutanix offerings include "one-click" enablement and upgrades, scale out expansion, and [OpenAPIs](https://www.nutanix.dev/api-reference-v3/) through the Nutanix Prism control plane, providing a single pane of glass experience for operators and a rich cloud platform for automation.
+[Prism](https://www.nutanix.com/products/prism) is the Nutanix control plane, a single pane of glass web console for managing multiple Nutanix clusters running the Nutanix [AHV](https://www.nutanix.com/products/ahv) hypervisor on [AOS](https://www.nutanix.com/products/acropolis/distributed-storage), Nutanix's data plane for storage and cluster operations. On a Nutanix AHV cluster, Red Hat OpenShift and Nutanix data services run as virtual machines.
 
-An overview of technology stack powering Red Hat OpenShift on Nutanix HCI solution includes workloads and orchestration on the top layer, the combined Nutanix and Red Hat software offerings in the middle layers, and the infrastructure providers (on-premises hardware and public clouds) on the bottom layer. In the following diagram, the Nutanix supported portion of the solution is indicated in green.
+While there is much potential for the partnership to expand, the focus of this series is to walk through and exercise a full-stack, enterprise-supported Kubernetes container platform with OpenShift on Nutanix AHV.
 
-![](openshift-on-hci.png)
+## Why Use Nutanix for Cloud Native Solutions?
 
-Prism is the Nutanix control plane, a single pane of glass for managing multiple Nutanix clusters that run the Nutanix AHV hypervisor on AOS, Nutanix's data plane for storage and cluster operations. On the Nutanix AHV cluster, Red Hat OpenShift and Nutanix data services run as virtual machine workloads.
+Nutanix supports multiple infrastructure vendors and hyperscalers, hypervisors, and Kubernetes distributions. Customers can leverage many of their existing vendors, investments, and skill sets while modernizing their operations and reducing total cost of ownership with [Nutanix HCI](https://www.nutanix.com/products/acropolis) to provide enterprise clouds. Nutanix Prism consolidates, simplifies, and can automate the management of compute, storage, GPU, and network infrastructure for multiple Nutanix AHV clusters. Most Nutanix offerings include "one-click" enablement, scale out expansion, non-disruptive upgrades, and [OpenAPIs](https://www.nutanix.dev/api-reference-v3/) through Prism, providing a single pane of glass experience for operators and a rich cloud platform for automation.
 
-A [Nutanix AHV cluster](https://www.nutanix.com/products/ahv) with Red Hat OpenShift should be provisioned with compute, memory, and GPU local resource capacity for container workloads, plus the resources required by Nutanix AOS, AHV, Prism and Red Hat OpenShift overhead, which would include local cluster storage for AHV image, VM, and container instantiation. While additional remote storage may be used by any VM, container, or Kubernetes cluster, it incurs a performance and management cost that can be mitigated when provided by Nutanix data services to local cluster storage to confer further HCI simplification. Therefore, OpenShift on AHV includes container storage interface (CSI) options from the Nutanix data services portfolio with some included usage via the [Nutanix CSI driver](https://artifacthub.io/packages/helm/nutanix/nutanix-csi-storage). Nutanix data services are additional licenses, typically with a storage dimension, to consume Nutanix cluster storage through new protocols while offering advanced management features such as backup, disaster recovery, and scale out capacity.
+The combination of AOS, AHV, and Prism on multiple infrastructure providers forms the basis for Nutanix data services to simplify storage for cloud-native workloads. For maximum application performance offered by Nutanix HCI, OpenShift on AHV leverages the [Nutanix CSI driver](https://artifacthub.io/packages/helm/nutanix/nutanix-csi-storage) to access Nutanix data services to consume Nutanix cluster storage with advanced management features such as backup, disaster recovery, and scale out capacity.
 
-Persistent storage of container workloads for block storage is included and can use the Nutanix CSI driver to access local *[versus any?]* Nutanix AOS cluster via iSCSI protocol with Nutanix Volumes, but non-CSI usage requires [Nutanix Volumes](https://www.nutanix.com/products/volumes) licensing. The Nutanix CSI driver can also leverage file storage via the NFS protocol recommended with [Nutanix Files](https://www.nutanix.com/products/files) (license not included). Additionally, the [Nutanix CSI operator](https://github.com/nutanix/openshift/tree/main/operators/csi) can be leveraged from the OpenShift Marketplace
+For persistent storage, the Nutanix CSI driver accesses block storage via iSCSI with [Nutanix Volumes](https://www.nutanix.com/products/volumes) and file storage via NFS recommended with [Nutanix Files](https://www.nutanix.com/products/files). The [Nutanix CSI operator](https://github.com/nutanix/openshift/tree/main/operators/csi) automates CSI deployment in OpenShift clusters and makes consuming Nutanix data storage services a simple operation.
 
 A more detailed view of the architecture *(the following image is a draft, not final)*:
 ![](draft-20Kdetail.png)
 
-The above constitutes the elements of a forthcoming reference architecture document, but the Nutanix platform has more facilities regularly consumed by containerized applications. [Nutanix cloud native](https://www.nutanix.com/solutions/cloud-native) offerings can provide [object storage](https://www.nutanix.com/solutions/consolidated-storage) and [databases](https://www.nutanix.com/solutions/databases) with advanced management from Prism without migration to Kubernetes. Nutanix automation offerings provide [cluster AIOps, auditing, and reporting](https://www.nutanix.com/products/prism) as well as [application self-service, governance, and operations](https://www.nutanix.com/products/calm) for PaaS and SaaS experiences across [hybrid, public, or private cloud usage](https://www.nutanix.com/products/beam). The Nutanix cloud platform simplifies and accelerates Red Hat OpenShift clusters for joint customers with the best enterprise support.
+The above constitutes the elements of a forthcoming reference architecture, but Nutanix can provide additional facilities to support and be consumed by containerized applications. [Nutanix cloud native](https://www.nutanix.com/solutions/cloud-native) offerings can provide [object storage](https://www.nutanix.com/solutions/consolidated-storage) and [databases](https://www.nutanix.com/solutions/databases) with advanced management from Prism without migration to Kubernetes. Nutanix automation offerings provide [cluster AIOps, auditing, and reporting](https://www.nutanix.com/products/prism) as well as [application self-service, governance, and operations](https://www.nutanix.com/products/calm) for PaaS and SaaS experiences across [hybrid, public, or private cloud usage](https://www.nutanix.com/products/beam).
+
+Nutanix pioneered the modernization of traditional three tier architecture with hyper-converged infrastructure and AOS, AHV, and Prism are built on cloud-native facilities to provide a seamless hybrid cloud management platform. Nutanix data services simplifies and accelerates VMs and containers for Red Hat OpenShift clusters. The combined Red Hat and Nutanix solution offers a better total cost of ownership, a standard certified full-stack, and joint enterprise support for OpenShift on AHV.
+
+The next entry in the blog series will begin the walkthrough of installing Red Hat OpenShift on a Nutanix AHV cluster.
+
+---
 
 ## OpenShift on AHV Installation Choices
 
@@ -54,21 +65,52 @@ Prerequisites are detailed in the Nutanix engineering [public OpenShift document
 
 1. [Red Hat Customer Portal](https://access.redhat.com/) account
 2. Nutanix AHV cluster with available resources:
-   - *Approximately X memory, Y storage, Z network resources* for a minimal OpenShift cluster
-   - Outbound public Internet access
-3. Installation host: a Linux VM or computer or a MacOS computer with:
+   - Minimal OpenShift cluster:
+     - Control pane: 3 VMs (4 vCPU, 16 GB RAM, 100 GB storage)
+     - Worker pane: 2+ VMs (2 vCPU, 8 GB RAM, 100 GB storage)
+     - 48GB RAM = (3x16 + 2x8) total
+     - 500GB storage = 100*(3+2) total
+     - 16 vCPU = 3x4 + 2x2 total
+     - vCPU = physical core or (threads per core × cores) × sockets
+   - Network with:
+      - Outbound public Internet access (to access.redhat.com and quay.io)
+      - Upstream NTP access
+      - Upstream DNS access
+        - ideally with hostnames for OpenShift cluster VMs, can be bypassed by DHCP
+      - DHCP with a routable subnet for the openshift cluster VMs:
+        - with persistent leases or 5 static IP addresses if DHCP unavailable
+        - upstream NTP and DNS configuration
+    - API and Application ingress load balancers (HAProxy)
+      - Can be combined, but must have upstream (external) and internal subnet routing
+3. Installation host: a Linux VM or Linux/MacOS computer with:
    - *Approximately 2 GB storage* for OpenShift binaries and configuration
    - Outbound public Internet access
-4. *SSH keypair(s)?*
+   - Network access to Nutanix AHV cluster
+   - 4 vCPU, 16 GB RAM, 100 GB storage
+4. *CSR signing and SSH keypair(s)*
+5. Kubernetes manifest and Ignition configuration files to bootstrap RHCOS nodes
 
-This walk through does not cover dark site, off-line, or disconnected public network access installation of OpenShift. While optional, leveraging a Linux VM on the AHV cluster for the installation host minimizes network transfer and is recommended. Private network access between the installation host and Nutanix AHV cluster is also recommended.
+This walk through does not cover dark site, off-line, or disconnected public network access installation of OpenShift. While optional, leveraging a Linux VM on the AHV cluster for the installation host minimizes network transfer and is recommended and can be sized as an additional control pane node. Private network access between the installation host and Nutanix AHV cluster is also recommended.
 
 [walk through continues...]
 
 ![](openshift-baremetal-installer.png)
+Requirements from:
+- https://docs.openshift.com/container-platform/4.8/installing/installing_bare_metal/installing-bare-metal.html#installing-bare-metal
+- https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.8/html-single/planning_your_deployment/index#resource-requirements_rhocs
+- https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.8/html-single/planning_your_deployment/index#storage-device-requirements_rhocs ?
 
 ---
 
 Sidebar ideas:
 
+- “Platform agnostic User Provisions Infra” and better why NTNX, AHV as a KVM fork, etc.
 - Nutanix and Open Source? Nutanix and Kubernetes?
+- How is Nutanix Licensed?
+  - non-CSI usage requires Nutanix Volumes licensing
+  - Nutanix Files (license not included)
+- Reference arch:
+  - A Nutanix AHV cluster with Red Hat OpenShift should be provisioned with resource capacity for container workloads, Nutanix and Red Hat OpenShift, and redundancy overhead to prevent downtime due to failures.
+  - Compute, memory, storage, and GPU local resource capacity for container workloads, plus the resources required by Nutanix AOS, AHV, Prism and Red Hat OpenShift overhead, which would include local cluster storage for AHV image, VM, and container instantiation.
+- Cluster API, K8s Federation, Operator framework
+- https://github.com/openshift/enhancements/pull/912
