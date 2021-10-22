@@ -99,8 +99,11 @@ Requirements from:
 - https://docs.openshift.com/container-platform/4.8/installing/installing_bare_metal/installing-bare-metal.html#installing-bare-metal
 - https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.8/html-single/planning_your_deployment/index#resource-requirements_rhocs
 - https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.8/html-single/planning_your_deployment/index#storage-device-requirements_rhocs ?
-
+From Shane:
+https://www.redhat.com/rhdc/managed-files/cl-self-managed-openshift-sizing-guide-f28271pr-202105-en_0.pdf
+https://docs.openshift.com/container-platform/4.8/installing/installing_vsphere/installing-vsphere.html#minimum-resource-requirements_installing-vsphere
 ---
+Part 1 intro: https://docs.google.com/document/d/15EQ9mr8CWuXcywhwts5kV3p7JmE38kKQiEi-ilU-uy4/edit?usp=sharing
 
 Sidebar ideas:
 
