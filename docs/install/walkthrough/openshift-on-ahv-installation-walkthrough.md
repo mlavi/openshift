@@ -1,12 +1,12 @@
-# Getting Started with Red Hat OpenShift on a Nutanix
+# Getting Started with Red Hat OpenShift on Nutanix
 
-This blog series provides guidance to IT, DevOps, and System Administrators looking to justify and provide production grade Kubernetes with Red Hat OpenShift on a Nutanix AHV cluster.
+This blog series provides guidance to IT, DevOps, and system administrators looking to justify and provide production grade Kubernetes with Red Hat OpenShift on a Nutanix AHV cluster.
 
 ## Cloud Native Digital Transformation
 
 The migration of applications from physical servers to virtual workloads has been underway for over two decades, but the migration from virtual machines to containers is less than a decade old. Modernizing applications to run as containers requires new tooling and the open source [Kubernetes project](https://kubernetes.io/) has emerged as the widest adopted container management system.
 
-Kubernetes provides cloud-native capabilities, architecture, and operations which require new skill sets, posing a disruptive challenge to traditional organizations who desire the rapid software updates and performance scaling benefits. Like the Linux operating system, there are many Kubernetes distributions, and Red Hat's [OpenShift Container Platform](https://www.redhat.com/en/technologies/cloud-computing/openshift) provides a market-leading platform to run and manage containers. OpenShift includes over-the-air updates, container runtime, networking, ingress, monitoring, logging, container registry, and authentication and authorization solutions.
+Kubernetes provides cloud-native capabilities, architecture, and operations which require new skill sets, posing a disruptive challenge to traditional organizations who desire the rapid software updates and performance scaling benefits. Like the Linux operating system, there are many Kubernetes distributions, and Red Hat [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) provides a market-leading platform to build, deploy and run applications with a consistent foundation across the hybrid cloud. Red Hat OpenShift includes over-the-air updates, container runtime, networking, ingress, monitoring, logging, container registry, and authentication and authorization solutions.
 
 Nutanix provides simplicity, scalability, and hybrid cloud infrastructure, providing one-click upgrades of storage, compute, and network resources and services on your choice of hardware, public cloud, and service providers. Running Red Hat OpenShift on Nutanix provides a full stack, enterprise supported, standardized solution with greatly simplified platform management and many non-disruptive operations, accelerating the adoption of containers and cloud native applications.
 
