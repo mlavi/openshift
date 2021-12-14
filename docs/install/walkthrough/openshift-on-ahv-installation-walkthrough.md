@@ -51,13 +51,14 @@ The initial support and certification offering focuses on the following:
 - Two recent Nutanix AOS LTS (Long Term Stability) releases with AHV:
   - 5.15.6
   - 5.20.1
-- Two recent Red Hat OpenShift releases:
+- Recent Red Hat OpenShift releases:
+  - 4.6
   - 4.7
   - 4.8
 
-Older releases of AOS, AHV, and OpenShift will not be supported. Successive patch and forward compatible releases will continue to support OpenShift on AHV. New releases are expected to be supported in the future, *this is a forward looking statement*.
+Older releases of AOS, AHV, and OpenShift will not be supported. Successive patch and forward compatible releases will continue to support OpenShift on AHV. New releases are expected to be supported in the future, *this is a forward looking statement*. Consult the Nutanix Support portal, Compatibility and Interoperability Matrix, [Partner Software](https://portal.nutanix.com/page/documents/compatibility-interoperability-matrix/software) tab and filter on **Partner Name:** Red Hat for updates.
 
-The OpenShift installer for platform agnostic **user-provisioned infrastructure** on bare metal is used. As the Red Hat and Nutanix partnership evolves, progressively easier and faster automation solutions for **installer-provisioned infrastructure** clusters will be supported, leading to turn-key OpenShift clusters, *this is a forward looking statement*. For customers interested in early access, please contact a local Nutanix representative to learn more.
+The OpenShift installer for platform agnostic **user-provisioned infrastructure**  is used. As the Red Hat and Nutanix partnership evolves, progressively easier and faster automation solutions for **installer-provisioned infrastructure** clusters will be supported, leading to turn-key OpenShift clusters, *this is a forward looking statement*. For customers interested in early access, please contact a local Nutanix representative to learn more.
 
 ## Installation Walk Through
 
@@ -103,11 +104,15 @@ From Shane:
 https://www.redhat.com/rhdc/managed-files/cl-self-managed-openshift-sizing-guide-f28271pr-202105-en_0.pdf
 https://docs.openshift.com/container-platform/4.8/installing/installing_vsphere/installing-vsphere.html#minimum-resource-requirements_installing-vsphere
 ---
+<<<<<<< HEAD
 Part 1 intro: https://docs.google.com/document/d/15EQ9mr8CWuXcywhwts5kV3p7JmE38kKQiEi-ilU-uy4/edit?usp=sharing
+=======
+https://docs.google.com/document/d/15EQ9mr8CWuXcywhwts5kV3p7JmE38kKQiEi-ilU-uy4/edit
+>>>>>>> 3729e64 (Fix:wordsmith)
 
 Sidebar ideas:
 
-- “Platform agnostic User Provisions Infra” and better why NTNX, AHV as a KVM fork, etc.
+- “Platform agnostic User Provisioned Infra” and better why NTNX, AHV as a KVM fork, etc.
 - Nutanix and Open Source? Nutanix and Kubernetes?
 - How is Nutanix Licensed?
   - non-CSI usage requires Nutanix Volumes licensing
@@ -116,4 +121,50 @@ Sidebar ideas:
   - A Nutanix AHV cluster with Red Hat OpenShift should be provisioned with resource capacity for container workloads, Nutanix and Red Hat OpenShift, and redundancy overhead to prevent downtime due to failures.
   - Compute, memory, storage, and GPU local resource capacity for container workloads, plus the resources required by Nutanix AOS, AHV, Prism and Red Hat OpenShift overhead, which would include local cluster storage for AHV image, VM, and container instantiation.
 - Cluster API, K8s Federation, Operator framework
-- https://github.com/openshift/enhancements/pull/912
+-
+---
+Non-sales webinars:
+- How to accelerate on-prem OpenShift? how to be your own MSP/public cloud SaaS?
+- How to cut OpenShift costs? TCO
+modernization, hybrid/multicloud/managing workloads across multiple cloud, and cloud costs
+
+# Getting Started with Red Hat OpenShift on Nutanix
+Blog Series Outline
+1. Overview of Red Hat OpenShift on Nutanix HCI Solution
+Digital transformation with Kubernetes requires new skills, architecture, and operations, but how do organizations address the multitude of choices required to work together to achieve application modernization? Red Hat and Nutanix have unified to make the OpenShift Container Platform run on Nutanix hybrid cloud infrastructure with joint enterprise support, simplified management, and scalable data services for cloud native workloads. A review of the solution components and how they make IT operations easier.
+
+2. Preparation for OpenShift Installation
+A walk through of product enablement, dependent services, and configuration on a Nutanix AHV cluster for OpenShift Container Platform network, storage, compute, and security resource requirements to insure a successful installation.
+
+3. OpenShift User Provisioned Infrastructure Installation
+Guidance for design choices to get OpenShift configured and running with Nutanix data services for persistent container workloads.
+
+4. Deploying a Sample Application on OpenShift
+Administrative walk through to provision resources in OpenShift with a sample application on a Nutanix AHV cluster.
+
+Deployment Options
+1. UPI: (Platform agnostic) User Provisioned Infra (sometimes referred to as bare metal option)
+2. IPI: Installer Provisioned Infra (https://github.com/openshift/enhancements/pull/912)
+3. Automation:
+   1. Calm blueprint: adds provisioning + install wrapper UPI
+   2. Shell scripts: installer wrapper UPI?
+   3. https://cloud.redhat.com/openshift/assisted-installer/clusters/ requires VPC
+      https://github.com/openshift/assisted-service
+
+```mermaid
+stateDiagram-v2
+%% https://mermaid-js.github.io/mermaid/#/stateDiagram
+    [*] --> ShellScriptWrapper
+    [*] --> CalmBlueprint
+    [*] --> InfrastructureProvidedInstaller
+    [*] --> UserProvidedInstaller
+    CalmBlueprint --> ShellScriptWrapper
+    ShellScriptWrapper --> UserProvidedInstaller
+    InfrastructureProvidedInstaller --> [*]
+    UserProvidedInstaller --> [*]
+
+```
+
+---
+Calm blueprint: 4.7
+- ssh -i ~/Documents/github.com/mlavi/dotfiles/keys/calm-blueprints.key core@10.42.250.94
