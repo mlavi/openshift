@@ -104,11 +104,9 @@ From Shane:
 https://www.redhat.com/rhdc/managed-files/cl-self-managed-openshift-sizing-guide-f28271pr-202105-en_0.pdf
 https://docs.openshift.com/container-platform/4.8/installing/installing_vsphere/installing-vsphere.html#minimum-resource-requirements_installing-vsphere
 ---
-<<<<<<< HEAD
 Part 1 intro: https://docs.google.com/document/d/15EQ9mr8CWuXcywhwts5kV3p7JmE38kKQiEi-ilU-uy4/edit?usp=sharing
-=======
-https://docs.google.com/document/d/15EQ9mr8CWuXcywhwts5kV3p7JmE38kKQiEi-ilU-uy4/edit
->>>>>>> 3729e64 (Fix:wordsmith)
+
+https://raw.githubusercontent.com/mlavi/openshift/main/docs/install/walkthrough/openshift-on-hci.png
 
 Sidebar ideas:
 
